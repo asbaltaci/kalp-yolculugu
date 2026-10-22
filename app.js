@@ -12,7 +12,7 @@ const dhikrs=[
 ["basit", "Yâ Bâsıt", "Genişleten, ferahlık veren.", 72, "يا باسط", "باسط = 72 (Yâ hariç)."],
 ["rafi", "Yâ Râfi‘", "Yükselten.", 351, "يا رافع", "رافع = 351 (Yâ hariç)."],
 ["muizz", "Yâ Muizz", "İzzet ve şeref veren.", 117, "يا معز", "معز = 117 (Yâ hariç)."],
-["latif", "Yâ Latîf", "İncelikle lütfeden.", 1269, "يا لطيف", "لطيف = 129 (Yâ hariç); 1269 senin seçtiğin evrad hedefidir."],
+["latif", "Yâ Latîf", "İncelikle lütfeden.", 129, "يا لطيف", "لطيف = 129 (Yâ hariç). Günlük hedef 129."],
 ["habir", "Yâ Habîr", "Her şeyden haberdar olan.", 812, "يا خبير", "خبير = 812 (Yâ hariç)."],
 ["halim", "Yâ Halîm", "Yumuşak davranan, cezalandırmakta acele etmeyen.", 88, "يا حليم", "حليم = 88 (Yâ hariç)."],
 ["vedud", "Yâ Vedûd", "Çok seven, sevgiye layık olan.", 400, "يا ودود", "ودود = 20 (و=6, د=4, و=6, د=4); 400 geleneksel evrad hedefidir."],
@@ -30,6 +30,37 @@ const dhikrs=[
 ["subhan", "Sübhânallâhi ve bihamdihî", "Allah’ı hamdiyle tesbih ederim.", 100, "سبحان الله وبحمده", "100 tekrar hakkında sahih rivayetler vardır."],
 ["vahdehu", "Lâ ilâhe illallâhu vahdehû lâ şerîke leh", "Allah’tan başka ilah yoktur; O tektir, ortağı yoktur.", 100, "لا إله إلا الله وحده لا شريك له له الملك وله الحمد وهو على كل شيء قدير", "100 tekrar hakkında sahih rivayetler vardır; tam lafız gösterilir."]
 ];
+
+// Manevi odaklar geleneksel tefekkür önerileridir; belirli sonuçların garantisi değildir.
+const esmaOdaklari={
+ kuddus:'Kalp temizliği, kötü alışkanlıklardan uzaklaşma ve arınma niyetiyle dua ve tefekkür.',
+ vehhab:'Karşılıksız ihsanı hatırlamak; şükür, cömertlik ve hayırlı nimet istemek.',
+ fettah:'Hayırlı kapıların açılması, doğru çözüm ve kolaylık için dua etmek.',
+ alim:'Faydalı ilim, öğrenme ve doğru bilgiye yönelmek.',
+ basit:'Gönül ferahlığı, ümit ve paylaşma üzerinde düşünmek.',
+ rafi:'Manevi olgunlaşma ve güzel ahlakla yükselmek için dua etmek.',
+ muizz:'İzzeti Allah’tan bilmek; onur, tevazu ve dürüstlük istemek.',
+ latif:'Allah’ın ince lütfunu hatırlamak; nezaket, şefkat ve kolaylık dilemek.',
+ habir:'Allah’ın her şeyden haberdar olduğunu hatırlayıp niyeti ve davranışları gözden geçirmek.',
+ halim:'Öfkeyi yönetmek, sabır ve yumuşak huyluluk geliştirmek.',
+ vedud:'Allah’ın sevgisini anmak; sevgi, merhamet ve aile bağlarını güçlendirmek.',
+ kaviyy:'Güçlüklerde sebat, sorumluluk ve hayırlı kuvvet istemek.',
+ muhsi:'Davranışlarının hesabını düşünmek, düzen ve öz muhasebe yapmak.',
+ batin:'Görünenden ötesinde Allah’ın bilgisi olduğunu hatırlamak; tevazu ve ihlas.',
+ nur:'Hidayet, kalp aydınlığı ve doğruyu ayırt edebilme için dua etmek.',
+ bedi:'Yaratılışın eşsizliğini tefekkür etmek; şükür ve yaratıcılığa değer vermek.',
+ baki:'Dünyanın geçiciliğini ve kalıcı iyilikleri hatırlamak.'
+};
+const duaOdaklari={
+ lahavle:'Kendi gücünün sınırlarını kabul edip Allah’tan yardım istemek.',
+ hasbunallah:'Tevekkül ve güven; tedbiri aldıktan sonra sonucu Allah’a bırakmak.',
+ hasbiyallah:'Allah’a dayanmak ve korku karşısında tevekkülü hatırlamak.',
+ istigfar:'Hatalardan dönmek, bağışlanma istemek ve telafiye yönelmek.',
+ tevhid:'Allah’ın birliğini ve ibadette ihlası hatırlamak.',
+ subhan:'Allah’ı tenzih ve hamd ile anmak; şükür bilincini artırmak.',
+ vahdehu:'Tevhid, hamd, mülkün Allah’a ait oluşu ve kudretini tefekkür etmek.'
+};
+
 const ayetler=[
 ['Haşr 59:18','Ey iman edenler! Allah’a karşı sorumluluğunuzun bilincinde olun; herkes yarın için ne hazırladığına baksın.'],
 ['Şems 91:9–10','Nefsini arındıran kurtuluşa erer; onu kötülüğe gömen ise kaybeder.'],
@@ -101,9 +132,9 @@ const readingNotes=[
 'Murakabe: Olağanüstü tecrübe aramadan ihsanı hatırla.',
 'Muhasebe: İlk niyetinle bugünkü davranışlarını karşılaştır.',
 'İstikamet: Önümüzdeki 90 gün için sürdürülebilir üç alışkanlık belirle.'];
-const KEY='kalp-yolculugu-v1';let state;try{state=JSON.parse(localStorage.getItem(KEY))||{}}catch{state={}};state.tasks ||= {};state.readings ||= {};state.counts ||= {};state.targets ||= {};state.journals ||= {};state.murakaba ||= {};state.day ||= 1;let day=state.day;const $=id=>document.getElementById(id),save=()=>localStorage.setItem(KEY,JSON.stringify(state)),key=(d,x)=>`${d}:${x}`;
+const KEY='kalp-yolculugu-v1';let state;try{state=JSON.parse(localStorage.getItem(KEY))||{}}catch{state={}};state.tasks ||= {};state.readings ||= {};state.counts ||= {};state.targets ||= {};state.journals ||= {};state.murakaba ||= {};state.day ||= 1;if(Number(state.targets.latif)===1269)state.targets.latif=129;let day=state.day;const $=id=>document.getElementById(id),save=()=>localStorage.setItem(KEY,JSON.stringify(state)),key=(d,x)=>`${d}:${x}`;
 function taskDefs(d){return [['sabah','Sabah zikirleri','İstiğfar, tevhid, salavat ve dua'],['kuran','Kur’an ve meal','Günün ayetlerini oku'],['ozel',focus[d-1][0],descriptions[d-1]],['murakaba','Murakabe','En az 5 dakika sessiz tefekkür'],['muhasebe','Akşam muhasebesi','Günün değerlendirmesini yaz']]}function taskCount(d){return taskDefs(d).filter(t=>state.tasks[key(d,t[0])]).length}function renderHome(){state.day=day;save();$('todayLabel').textContent=`Gün ${day} / 30`;$('dayFocus').textContent=`${focus[day-1][0]} · ${focus[day-1][1]}`;let c=taskCount(day);$('progressLabel').textContent=`${c}/5 · %${c*20}`;$('progressBar').style.width=`${c*20}%`;$('tasks').innerHTML='';taskDefs(day).forEach(([id,title,desc])=>{let el=document.createElement('div');el.className='task';let cb=document.createElement('input');cb.type='checkbox';cb.checked=!!state.tasks[key(day,id)];cb.onchange=()=>{state.tasks[key(day,id)]=cb.checked;save();renderHome()};let label=document.createElement('label');label.textContent=title;let sm=document.createElement('small');sm.textContent=desc;label.append(sm);el.append(cb,label);$('tasks').append(el)});$('days').innerHTML='';for(let i=1;i<=30;i++){let b=document.createElement('button');b.className='day'+(i===day?' selected':'')+(taskCount(i)===5?' done':'');b.textContent=i;b.onclick=()=>{day=i;renderAll()};$('days').append(b)}}
-function renderDhikr(){let id=$('dhikrSelect').value||dhikrs[0][0],entry=dhikrs.find(x=>x[0]===id),n=state.counts[key(day,id)]||0,target=state.targets[id]||entry[3];$('dhikrMeaning').textContent=entry[2];$('dhikrArabic').textContent=entry[4];$('dhikrEbced').textContent=entry[5];$('dhikrCount').textContent=n;$('dhikrTarget').value=target;$('dhikrBar').style.width=`${Math.min(100,n/target*100)}%`;$('dhikrSummary').innerHTML='';dhikrs.forEach(x=>{let p=document.createElement('div');p.className='row';p.style.padding='7px 0';let a=document.createElement('span');a.textContent=x[1];let b=document.createElement('strong');b.textContent=`${state.counts[key(day,x[0])]||0} / ${state.targets[x[0]]||x[3]}`;p.append(a,b);$('dhikrSummary').append(p)})}
+function renderDhikr(){let id=$('dhikrSelect').value||dhikrs[0][0],entry=dhikrs.find(x=>x[0]===id),n=state.counts[key(day,id)]||0,target=state.targets[id]||entry[3];$('dhikrMeaning').textContent='Anlamı: '+entry[2];$('dhikrPurpose').textContent='Ne için okunur? '+(esmaOdaklari[id]||duaOdaklari[id]||'Dua, zikir ve tefekkür için.');$('dhikrArabic').textContent=entry[4];$('dhikrEbced').textContent=entry[5];$('dhikrCount').textContent=n;$('dhikrTarget').value=target;$('dhikrBar').style.width=`${Math.min(100,n/target*100)}%`;$('dhikrSummary').innerHTML='';dhikrs.forEach(x=>{let p=document.createElement('div');p.className='row';p.style.padding='7px 0';let a=document.createElement('span');a.textContent=x[1];let b=document.createElement('strong');b.textContent=`${state.counts[key(day,x[0])]||0} / ${state.targets[x[0]]||x[3]}`;p.append(a,b);$('dhikrSummary').append(p)})}
 const dailyReadingGoals=[['yarimcuz','Kur’an-ı Kerim · Yarım cüz','Günlük hedef: ½ cüz (yaklaşık 10 sayfa; mushaf baskısına göre değişebilir).'],['risale10','Risale-i Nur · 10 sayfa','Okuduğun baskıdaki 10 sayfayı tamamlayınca işaretle.'],['pirlanta10','Pırlanta · 10 sayfa','Günlük 10 sayfa; hangi ciltte kaldığını muhasebe notuna yazabilirsin.'],['cevsen10','Cevşen · 10 bab','Her gün 10 bab oku; takip ettiğin bölüm aralığını not edebilirsin.'],['kulub1','Kulûbü’d-Dâria · 1 sayfa','Günlük 1 sayfa; kullandığın baskıya göre ilerle.']];
 function renderReading(){let a=ayetler[day-1],h=hadisler[(day-1)%hadisler.length];let arr=[...dailyReadingGoals,['ayet','Kur’an · '+a[0],a[1]+'\n\nNot: Bu metin ayetin kısa anlam özetidir, birebir meal değildir.'],['hadis','Hadis · '+h[0],h[1]+'\nKaynak: '+h[2]],['eser','Manevi okuma ve tefekkür',readingNotes[day-1]],['tefekkur','Günün uygulaması',descriptions[day-1]]];$('readings').innerHTML='';arr.forEach(([id,title,desc])=>{let el=document.createElement('div');el.className='reading';let cb=document.createElement('input');cb.type='checkbox';cb.checked=!!state.readings[key(day,id)];cb.onchange=()=>{state.readings[key(day,id)]=cb.checked;save();if(id==='ayet'){state.tasks[key(day,'kuran')]=cb.checked;save();renderHome()}};let t=document.createElement('strong');t.textContent=' '+title;let sm=document.createElement('small');sm.style.whiteSpace='pre-line';sm.style.fontSize='14px';sm.style.lineHeight='1.65';sm.textContent=desc;el.append(cb,t,sm);$('readings').append(el)})}
 function renderProgress(){$('totalTasks').textContent=Object.values(state.tasks).filter(Boolean).length;$('completedDays').textContent=Array.from({length:30},(_,i)=>taskCount(i+1)===5).filter(Boolean).length;$('totalDhikr').textContent=Object.values(state.counts).reduce((a,b)=>a+(Number(b)||0),0);$('totalMurakaba').textContent=Object.values(state.murakaba).reduce((a,b)=>a+(Number(b)||0),0);$('journalDay').textContent=`Gün ${day} — ${focus[day-1][0]}`;$('journal').value=state.journals[day]||''}

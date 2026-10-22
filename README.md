@@ -1,1 +1,1 @@
-Kalp Yolculuğu V4: 24 zikir ve 5 yeni günlük okuma hedefi. Önce JSON yedeği alın. Ana dizindeki dosyaları GitHub Pages repository köküne yerleştirin. Okuma görevleri 30 gün için ayrı ayrı localStorage içinde saklanır. Telifli eserlerin tam metinleri eklenmemiştir.
+Kalp Yolculuğu V5: Yâ Latîf 129 ve 17 esma için anlam/tefekkür amacı, 7 dua zikri için açıklamalar. Mevcut kayıtlar korunur.
