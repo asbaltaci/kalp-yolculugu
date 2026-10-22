@@ -1,1 +1,2 @@
-Kalp Yolculuğu V7.3.1 — Zikir odaklı sürüm. Kitap ve Kur’an EPUB ekleme arayüzleri kaldırıldı; Okuma günlük hedef takip listesi korundu. 25 hazır zikir, Salavat-ı Şerife (100), zikir ekle/düzenle/gizle/sırala özellikleri vardır. Mevcut localStorage anahtarı değişmedi. GitHub ana dizinine dosyaları yükleyip aynı isimlileri güncelleyin. Önce JSON yedeği alın.
+Kalp Yolculuğu V7.4 — Zikir Düzenleme görünürlük düzeltmesi.
+Zikir ekranında seçimin hemen altında altın renkli SEÇİLİ ZİKRİ DÜZENLE düğmesi bulunur. Alt kısımda TÜM ZİKİRLERİ DÜZENLE bulunur. Salavat-ı Şerife (100) dahildir. Kitap ekleme yoktur. Önce JSON yedeği alın.
