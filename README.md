@@ -1,1 +1,1 @@
-Kalp Yolculuğu V5: Yâ Latîf 129 ve 17 esma için anlam/tefekkür amacı, 7 dua zikri için açıklamalar. Mevcut kayıtlar korunur.
+Kalp Yolculuğu V6: Hedefte otomatik durma, son 3 zikre yaklaşırken artan titreşim, hedefte uzun titreşim ve tamamlandı mesajı. Tarayıcı ve cihaz titreşim desteğine bağlıdır. Önce JSON yedeği alın.
